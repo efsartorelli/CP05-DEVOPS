@@ -37,6 +37,7 @@ styles.add(ParagraphStyle(name="SmallCP", fontName="ArialCP", fontSize=8.4, lead
 styles.add(ParagraphStyle(name="LabelCP", fontName="ArialCP-Bold", fontSize=8, leading=11, textColor=PINK, spaceAfter=8))
 styles.add(ParagraphStyle(name="WhiteTitleCP", fontName="ArialCP-Bold", fontSize=33, leading=40, textColor=colors.white))
 styles.add(ParagraphStyle(name="WhiteBodyCP", fontName="ArialCP", fontSize=12, leading=19, textColor=colors.white))
+styles.add(ParagraphStyle(name="WhiteTeamCP", fontName="ArialCP", fontSize=10.5, leading=16, textColor=colors.white))
 styles.add(ParagraphStyle(name="CellCP", fontName="ArialCP", fontSize=8, leading=12, textColor=DARK))
 styles.add(ParagraphStyle(name="CellBoldCP", fontName="ArialCP-Bold", fontSize=8, leading=12, textColor=DARK))
 styles.add(ParagraphStyle(name="CodeCP", fontName="Courier", fontSize=8.2, leading=12, textColor=DARK))
@@ -103,16 +104,21 @@ def page_header(canvas, doc):
 doc = SimpleDocTemplate(
     str(OUTPUT), pagesize=A4, rightMargin=22 * mm, leftMargin=22 * mm,
     topMargin=24 * mm, bottomMargin=25 * mm,
-    title="FIAP - CP05: Pipeline DevSecOps Completo", author="Enzo Sartorelli",
+    title="FIAP - CP05: Pipeline DevSecOps Completo", author="Enzo Vazquez Sartorelli, Guilherme Brazioli, Pedro Oliveira Valotto, Nicolas Nogueira Boni, Kaue Pastori Teixeira",
 )
 story = []
 
 # Capa
 story += [Spacer(1, 50 * mm), tag("Engenharia de Software / DevSecOps and Cloud Computing"),
           p("FIAP - CP05<br/>Pipeline DevSecOps<br/>Completo", "WhiteTitleCP"), Spacer(1, 11 * mm),
-          p("Gitleaks · Semgrep · Trivy", "WhiteBodyCP"), Spacer(1, 46 * mm),
+          p("Gitleaks · Semgrep · Trivy", "WhiteBodyCP"), Spacer(1, 29 * mm),
           p("Checkpoint 05  |  13 de outubro de 2026", "WhiteBodyCP"),
-          p("Aluno: Enzo Sartorelli  |  RM: ____________________", "WhiteBodyCP"),
+          p("Equipe — cinco integrantes", "WhiteBodyCP"),
+          p("Enzo Vazquez Sartorelli — RM94818<br/>"
+            "Guilherme Brazioli — RM98237<br/>"
+            "Pedro Oliveira Valotto — RM551445<br/>"
+            "Nicolas Nogueira Boni — RM551965<br/>"
+            "Kaue Pastori Teixeira — RM98501", "WhiteTeamCP"),
           p("Repositório: <link href='https://github.com/efsartorelli/CP05-DEVOPS' color='#FFFFFF'>github.com/efsartorelli/CP05-DEVOPS</link>", "WhiteBodyCP"),
           PageBreak()]
 

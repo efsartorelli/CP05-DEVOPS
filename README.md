@@ -2,7 +2,7 @@
 
 Aplicação estática interativa para o Checkpoint 05 de DevSecOps and Cloud Computing (Engenharia de Software, FIAP). O workflow **Security Pipeline** verifica segredos no histórico, código JavaScript e vulnerabilidades na imagem construída pelo Dockerfile. O painel da aplicação permite marcar etapas de estudo no navegador; esse progresso local não representa o resultado do CI.
 
-**Aluno:** Enzo Sartorelli (identificação disponível na configuração Git local; confirmar RM antes da entrega acadêmica).
+**Equipe:** Enzo Vazquez Sartorelli (RM94818), Guilherme Brazioli (RM98237), Pedro Oliveira Valotto (RM551445), Nicolas Nogueira Boni (RM551965) e Kaue Pastori Teixeira (RM98501).
 
 ## Tecnologias
 
