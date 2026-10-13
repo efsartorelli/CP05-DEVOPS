@@ -1,0 +1,12 @@
+.git
+.github
+.semgrep
+evidencias
+tmp
+*.pdf
+*.md
+*.log
+*.json
+.gitleaks.toml
+.gitignore
+__pycache__

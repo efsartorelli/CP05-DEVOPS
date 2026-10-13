@@ -1,0 +1,77 @@
+name: Security Pipeline
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: Gitleaks | Segredos no histórico
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout com histórico completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Instalar Gitleaks v8.30.0
+        run: |
+          curl -fsSL https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_linux_x64.tar.gz -o /tmp/gitleaks.tar.gz
+          tar -xzf /tmp/gitleaks.tar.gz gitleaks
+          sudo install -m 0755 gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+      - name: Verificar histórico da branch
+        run: gitleaks git . --config .gitleaks.toml --log-opts="HEAD" --redact --verbose --exit-code 1
+
+  semgrep:
+    name: Semgrep | JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Analisar código com regra local
+        run: |
+          docker run --rm -v "$PWD:/src" -w /src semgrep/semgrep:1.140.0 \
+            semgrep scan --config .semgrep/eval.yml --error --metrics=off .
+
+  trivy:
+    name: Trivy | Imagem Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Construir imagem do projeto
+        run: docker build -t fiap-cp05:${{ github.sha }} .
+      - name: Relatório completo de vulnerabilidades
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: fiap-cp05:${{ github.sha }}
+          format: json
+          output: trivy-report.json
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+      - name: Exibir CVEs e severidades no log
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: fiap-cp05:${{ github.sha }}
+          format: table
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+          skip-setup-trivy: true
+      - name: Publicar relatório como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report-${{ github.run_id }}
+          path: trivy-report.json
+          if-no-files-found: warn
+      - name: Exibir CVEs e bloquear severidade CRITICAL
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: fiap-cp05:${{ github.sha }}
+          format: table
+          severity: CRITICAL
+          exit-code: '1'
+          skip-setup-trivy: true

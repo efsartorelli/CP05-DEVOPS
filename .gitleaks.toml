@@ -1,0 +1,10 @@
+title = "FIAP CP05 - política de segredos"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "fiap-cp05-fake-token"
+description = "Token fictício exclusivo do teste de sabotagem do CP05"
+regex = '''FIAP_CP05_FAKE_TOKEN_[A-Z0-9]{24}'''
+keywords = ["FIAP_CP05_FAKE_TOKEN_"]

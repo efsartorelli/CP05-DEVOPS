@@ -1,0 +1,10 @@
+rules:
+  - id: fiap-cp05-no-eval
+    message: "Evite eval(): executar texto como JavaScript permite execução de código não confiável."
+    languages: [javascript]
+    severity: ERROR
+    metadata:
+      category: security
+      technology: [javascript]
+      purpose: "Regra local do CP05 para demonstrar a detecção da sabotagem."
+    pattern: eval(...)

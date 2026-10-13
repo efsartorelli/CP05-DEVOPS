@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Painel interativo do Checkpoint 05 de DevSecOps da FIAP.">
+  <title>CP05 | Pipeline DevSecOps</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark">F</span><span>FIAP <small>/ CP05</small></span></div>
+    <a class="header-link" href="#pipeline">Explorar pipeline <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="pulse"></span> ENGENHARIA DE SOFTWARE · DEVSECOPS</div>
+      <h1 id="hero-title">Segurança em cada <em>etapa</em> do código.</h1>
+      <p>Um laboratório prático de CI/CD com três verificações independentes: segredos, análise estática e vulnerabilidades na imagem.</p>
+      <a class="primary-button" href="#pipeline">Conheça as três barreiras <span aria-hidden="true">↓</span></a>
+      <div class="hero-meta"><span>CHECKPOINT 05</span><span>GITHUB ACTIONS</span><span>DOCKER + NGINX</span></div>
+    </section>
+
+    <section class="section" id="pipeline" aria-labelledby="pipeline-title">
+      <div class="section-heading"><div><p class="kicker">01 / ARQUITETURA</p><h2 id="pipeline-title">Três barreiras. Um fluxo.</h2></div><p>Cada job roda em paralelo a cada push ou pull request. Uma falha sinaliza um risco que deve ser corrigido antes da entrega.</p></div>
+      <div class="pipeline-grid">
+        <article class="tool-card" data-tool="gitleaks"><div class="card-top"><span class="card-number">01</span><span class="status-dot"></span></div><div class="tool-icon">{ }</div><h3>Gitleaks</h3><p>Procura credenciais e tokens no histórico do Git antes que se espalhem.</p><button type="button" class="detail-button" aria-expanded="false" aria-controls="detail-gitleaks">Ver detalhes <span aria-hidden="true">↗</span></button><div class="tool-detail" id="detail-gitleaks" hidden><strong>Entrada</strong><span>Histórico da branch</span><strong>Bloqueio</strong><span>Segredo detectado</span></div></article>
+        <article class="tool-card" data-tool="semgrep"><div class="card-top"><span class="card-number">02</span><span class="status-dot"></span></div><div class="tool-icon">&lt;/&gt;</div><h3>Semgrep</h3><p>Analisa JavaScript com uma regra local que identifica chamadas inseguras de <code>eval</code>.</p><button type="button" class="detail-button" aria-expanded="false" aria-controls="detail-semgrep">Ver detalhes <span aria-hidden="true">↗</span></button><div class="tool-detail" id="detail-semgrep" hidden><strong>Entrada</strong><span>Código JavaScript</span><strong>Bloqueio</strong><span>Uso de eval</span></div></article>
+        <article class="tool-card" data-tool="trivy"><div class="card-top"><span class="card-number">03</span><span class="status-dot"></span></div><div class="tool-icon">⬡</div><h3>Trivy</h3><p>Inspeciona a imagem Docker construída no workflow e bloqueia CVEs críticos.</p><button type="button" class="detail-button" aria-expanded="false" aria-controls="detail-trivy">Ver detalhes <span aria-hidden="true">↗</span></button><div class="tool-detail" id="detail-trivy" hidden><strong>Entrada</strong><span>Imagem local do build</span><strong>Bloqueio</strong><span>Severidade CRITICAL</span></div></article>
+      </div>
+    </section>
+
+    <section class="lab-section" aria-labelledby="lab-title"><div class="lab-copy"><p class="kicker">02 / LABORATÓRIO</p><h2 id="lab-title">Acompanhe seu progresso.</h2><p>Marque as atividades à medida que reproduz os testes. Esta lista é pessoal e fica salva somente neste navegador; ela não representa o estado do GitHub Actions.</p><div class="progress-row"><span>Progresso local</span><strong id="progress-label">0/3</strong></div><div class="progress-track" role="progressbar" aria-label="Progresso local" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="progress-bar"><span id="progress-fill"></span></div><button type="button" id="reset-button" class="reset-button">Limpar progresso</button></div><div class="checklist" id="checklist"><label><input type="checkbox" data-task="secrets"><span><strong>Testar detecção de segredo</strong><small>Branch isolada · Gitleaks</small></span></label><label><input type="checkbox" data-task="code"><span><strong>Testar análise do código</strong><small>Branch isolada · Semgrep</small></span></label><label><input type="checkbox" data-task="image"><span><strong>Analisar imagem Docker</strong><small>Imagem construída · Trivy</small></span></label></div></section>
+  </main>
+  <footer><span>FIAP · CP05 DevSecOps & Cloud Computing</span><span>Pipeline de segurança demonstrativo</span></footer>
+</body>
+</html>
