@@ -109,10 +109,11 @@ story = []
 
 # Capa
 story += [Spacer(1, 50 * mm), tag("Engenharia de Software / DevSecOps and Cloud Computing"),
-          p("O Pipeline<br/>DevSecOps<br/>Completo", "WhiteTitleCP"), Spacer(1, 11 * mm),
+          p("FIAP - CP05<br/>Pipeline DevSecOps<br/>Completo", "WhiteTitleCP"), Spacer(1, 11 * mm),
           p("Gitleaks · Semgrep · Trivy", "WhiteBodyCP"), Spacer(1, 46 * mm),
           p("Checkpoint 05  |  13 de outubro de 2026", "WhiteBodyCP"),
           p("Aluno: Enzo Sartorelli  |  RM: ____________________", "WhiteBodyCP"),
+          p("Repositório: <link href='https://github.com/efsartorelli/CP05-DEVOPS' color='#FFFFFF'>github.com/efsartorelli/CP05-DEVOPS</link>", "WhiteBodyCP"),
           PageBreak()]
 
 # Introdução e arquitetura
@@ -165,6 +166,7 @@ story += [tag("05 / Encerramento"), p("Conclusão", "SectionTitleCP"),
           p("Semgrep (falha esperada): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387</link>", "SmallCP"),
           p("Trivy e main (sucesso): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681</link>", "SmallCP"),
           p("pull_request (teste, PR #1 fechado): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38464011096' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38464011096</link>", "SmallCP"),
+          p("Commits das provas: prova/gitleaks em c68a4d5; prova/semgrep em 0225a55. Ambas as branches permanecem isoladas da main.", "SmallCP"),
           Spacer(1, 8 * mm),
           box("Integridade das evidências", "As três imagens são capturas diretas das páginas dos runs no GitHub Actions. A visualização pública pede login para mostrar logs; por isso os logs autênticos foram baixados pela API autenticada e preservados ao lado das imagens. Os arquivos de sabotagem nunca foram mesclados à main."),
           Spacer(1, 8 * mm),
