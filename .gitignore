@@ -5,3 +5,4 @@ __pycache__/
 .cache/
 evidencias/*.log
 evidencias/*.json
+!evidencias/03-trivy-github-report.json
