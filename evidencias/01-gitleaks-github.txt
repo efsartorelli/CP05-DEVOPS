@@ -1,0 +1,163 @@
+﻿2026-10-13T20:19:33.6919512Z Current runner version: '2.337.0'
+2026-10-13T20:19:33.6947141Z ##[group]Runner Image Provisioner
+2026-10-13T20:19:33.6948103Z Hosted Compute Agent
+2026-10-13T20:19:33.6948827Z Version: 20261002.596
+2026-10-13T20:19:33.6949503Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-13T20:19:33.6950291Z Build Date: 2026-10-02T22:28:27Z
+2026-10-13T20:19:33.6951062Z Worker ID: {1a1b307d-6021-443a-9daa-fe6afe36abd0}
+2026-10-13T20:19:33.6951811Z Region: southcentralus
+2026-10-13T20:19:33.6952437Z Cloud: Azure
+2026-10-13T20:19:33.6953084Z ##[endgroup]
+2026-10-13T20:19:33.6954667Z ##[group]Operating System
+2026-10-13T20:19:33.6955590Z Ubuntu
+2026-10-13T20:19:33.6956143Z 24.04.5
+2026-10-13T20:19:33.6956703Z LTS
+2026-10-13T20:19:33.6957317Z ##[endgroup]
+2026-10-13T20:19:33.6957906Z ##[group]Runner Image
+2026-10-13T20:19:33.6958556Z Image: ubuntu-24.04
+2026-10-13T20:19:33.6959168Z Version: 20261004.327.1
+2026-10-13T20:19:33.6960593Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-13T20:19:33.6962166Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-13T20:19:33.6963214Z ##[endgroup]
+2026-10-13T20:19:33.6964461Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T20:19:33.6967267Z Contents: read
+2026-10-13T20:19:33.6967930Z Metadata: read
+2026-10-13T20:19:33.6968529Z ##[endgroup]
+2026-10-13T20:19:33.6971322Z Secret source: Actions
+2026-10-13T20:19:33.6972313Z Cache mode: write
+2026-10-13T20:19:33.6973144Z Prepare workflow directory
+2026-10-13T20:19:33.7371242Z Prepare all required actions
+2026-10-13T20:19:33.7421418Z Getting action download info
+2026-10-13T20:19:34.0222449Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-13T20:19:34.2240953Z Complete job name: Gitleaks | Segredos no histórico
+2026-10-13T20:19:34.3156432Z ##[group]Run actions/checkout@v4
+2026-10-13T20:19:34.3157347Z with:
+2026-10-13T20:19:34.3157819Z   fetch-depth: 0
+2026-10-13T20:19:34.3158340Z   repository: efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:34.3162307Z   token: ***
+2026-10-13T20:19:34.3162770Z   ssh-strict: true
+2026-10-13T20:19:34.3163230Z   ssh-user: git
+2026-10-13T20:19:34.3163697Z   persist-credentials: true
+2026-10-13T20:19:34.3164216Z   clean: true
+2026-10-13T20:19:34.3164672Z   sparse-checkout-cone-mode: true
+2026-10-13T20:19:34.3165454Z   fetch-tags: false
+2026-10-13T20:19:34.3165918Z   show-progress: true
+2026-10-13T20:19:34.3166367Z   lfs: false
+2026-10-13T20:19:34.3166811Z   submodules: false
+2026-10-13T20:19:34.3167270Z   set-safe-directory: true
+2026-10-13T20:19:34.3167790Z   allow-unsafe-pr-checkout: false
+2026-10-13T20:19:34.3168543Z ##[endgroup]
+2026-10-13T20:19:34.4264557Z Syncing repository: efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:34.4267042Z ##[group]Getting Git version info
+2026-10-13T20:19:34.4267937Z Working directory is '/home/runner/work/CP05-DEVOPS/CP05-DEVOPS'
+2026-10-13T20:19:34.4269201Z [command]/usr/bin/git version
+2026-10-13T20:19:34.4307064Z git version 2.55.0
+2026-10-13T20:19:34.4330315Z ##[endgroup]
+2026-10-13T20:19:34.4347235Z Temporarily overriding HOME='/home/runner/work/_temp/0a596aa9-738f-476d-a4e7-026c69a17949' before making global git config changes
+2026-10-13T20:19:34.4349323Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T20:19:34.4365403Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:34.4421214Z Deleting the contents of '/home/runner/work/CP05-DEVOPS/CP05-DEVOPS'
+2026-10-13T20:19:34.4427602Z ##[group]Initializing the repository
+2026-10-13T20:19:34.4431378Z [command]/usr/bin/git init /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:34.4514664Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-13T20:19:34.4516710Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-13T20:19:34.4518423Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-13T20:19:34.4520564Z hint: call:
+2026-10-13T20:19:34.4521156Z hint:
+2026-10-13T20:19:34.4521844Z hint: 	git config --global init.defaultBranch <name>
+2026-10-13T20:19:34.4522628Z hint:
+2026-10-13T20:19:34.4523388Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-13T20:19:34.4524473Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-13T20:19:34.4525689Z hint:
+2026-10-13T20:19:34.4526313Z hint: 	git branch -m <name>
+2026-10-13T20:19:34.4527078Z hint:
+2026-10-13T20:19:34.4527856Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-13T20:19:34.4529317Z Initialized empty Git repository in /home/runner/work/CP05-DEVOPS/CP05-DEVOPS/.git/
+2026-10-13T20:19:34.4531621Z [command]/usr/bin/git remote add origin https://github.com/efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:34.4577683Z ##[endgroup]
+2026-10-13T20:19:34.4578527Z ##[group]Disabling automatic garbage collection
+2026-10-13T20:19:34.4582783Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-13T20:19:34.4619940Z ##[endgroup]
+2026-10-13T20:19:34.4620695Z ##[group]Setting up auth
+2026-10-13T20:19:34.4628943Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T20:19:34.4670782Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T20:19:34.5033255Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T20:19:34.5080671Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T20:19:34.5351202Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T20:19:34.5394568Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T20:19:34.5679284Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-13T20:19:34.5729140Z ##[endgroup]
+2026-10-13T20:19:34.5730071Z ##[group]Fetching the repository
+2026-10-13T20:19:34.5740433Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-13T20:19:35.0219635Z From https://github.com/efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:35.0221065Z  * [new branch]      main           -> origin/main
+2026-10-13T20:19:35.0222285Z  * [new branch]      prova/gitleaks -> origin/prova/gitleaks
+2026-10-13T20:19:35.0223564Z  * [new branch]      prova/semgrep  -> origin/prova/semgrep
+2026-10-13T20:19:35.0231969Z [command]/usr/bin/git branch --list --remote origin/prova/gitleaks
+2026-10-13T20:19:35.0265093Z   origin/prova/gitleaks
+2026-10-13T20:19:35.0274345Z [command]/usr/bin/git rev-parse refs/remotes/origin/prova/gitleaks
+2026-10-13T20:19:35.0305868Z c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9
+2026-10-13T20:19:35.0311648Z ##[endgroup]
+2026-10-13T20:19:35.0313151Z ##[group]Determining the checkout info
+2026-10-13T20:19:35.0314793Z ##[endgroup]
+2026-10-13T20:19:35.0319593Z [command]/usr/bin/git sparse-checkout disable
+2026-10-13T20:19:35.0379316Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-13T20:19:35.0420032Z ##[group]Checking out the ref
+2026-10-13T20:19:35.0424826Z [command]/usr/bin/git checkout --progress --force -B prova/gitleaks refs/remotes/origin/prova/gitleaks
+2026-10-13T20:19:35.0490612Z Switched to a new branch 'prova/gitleaks'
+2026-10-13T20:19:35.0495512Z branch 'prova/gitleaks' set up to track 'origin/prova/gitleaks'.
+2026-10-13T20:19:35.0501906Z ##[endgroup]
+2026-10-13T20:19:35.0551971Z [command]/usr/bin/git log -1 --format=%H
+2026-10-13T20:19:35.0585037Z c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9
+2026-10-13T20:19:35.0830007Z ##[group]Run curl -fsSL https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_linux_x64.tar.gz -o /tmp/gitleaks.tar.gz
+2026-10-13T20:19:35.0832073Z [36;1mcurl -fsSL https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_linux_x64.tar.gz -o /tmp/gitleaks.tar.gz[0m
+2026-10-13T20:19:35.0833361Z [36;1mtar -xzf /tmp/gitleaks.tar.gz gitleaks[0m
+2026-10-13T20:19:35.0834158Z [36;1msudo install -m 0755 gitleaks /usr/local/bin/gitleaks[0m
+2026-10-13T20:19:35.0835144Z [36;1mgitleaks version[0m
+2026-10-13T20:19:35.1069357Z shell: /usr/bin/bash -e {0}
+2026-10-13T20:19:35.1070103Z ##[endgroup]
+2026-10-13T20:19:35.8887020Z 8.30.0
+2026-10-13T20:19:35.8987399Z ##[group]Run gitleaks git . --config .gitleaks.toml --log-opts="HEAD" --redact --verbose --exit-code 1
+2026-10-13T20:19:35.8990657Z [36;1mgitleaks git . --config .gitleaks.toml --log-opts="HEAD" --redact --verbose --exit-code 1[0m
+2026-10-13T20:19:35.9064784Z shell: /usr/bin/bash -e {0}
+2026-10-13T20:19:35.9066316Z ##[endgroup]
+2026-10-13T20:19:36.2038045Z 
+2026-10-13T20:19:36.2039450Z     ○
+2026-10-13T20:19:36.2040598Z     │╲
+2026-10-13T20:19:36.2041518Z     │ ○
+2026-10-13T20:19:36.2042430Z     ○ ░
+2026-10-13T20:19:36.2043359Z     ░    gitleaks
+2026-10-13T20:19:36.2043957Z 
+2026-10-13T20:19:36.3702449Z Finding:     ﻿TOKEN_FICTICIO=[1;3;mREDACTED[0m
+2026-10-13T20:19:36.3704062Z Secret:      [1;3;mREDACTED[0m
+2026-10-13T20:19:36.3705543Z RuleID:      fiap-cp05-fake-token
+2026-10-13T20:19:36.3706775Z Entropy:     4.563532
+2026-10-13T20:19:36.3707888Z File:        sabotagem-gitleaks.txt
+2026-10-13T20:19:36.3709137Z Line:        1
+2026-10-13T20:19:36.3710446Z Commit:      c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9
+2026-10-13T20:19:36.3712001Z Author:      Enzo Sartorelli
+2026-10-13T20:19:36.3713283Z Email:       enzo.sartorelli@outlook.com
+2026-10-13T20:19:36.3714596Z Date:        2026-10-13T20:08:26Z
+2026-10-13T20:19:36.3716881Z Fingerprint: c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9:sabotagem-gitleaks.txt:fiap-cp05-fake-token:1
+2026-10-13T20:19:36.3720602Z Link:        https://github.com/efsartorelli/CP05-DEVOPS/blob/c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9/sabotagem-gitleaks.txt#L1
+2026-10-13T20:19:36.3722776Z 
+2026-10-13T20:19:36.3727031Z [90m8:19PM[0m [32mINF[0m [1m2 commits scanned.[0m
+2026-10-13T20:19:36.3729061Z [90m8:19PM[0m [32mINF[0m [1mscanned ~16540 bytes (16.54 KB) in 169ms[0m
+2026-10-13T20:19:36.3730928Z [90m8:19PM[0m [33mWRN[0m [1mleaks found: 1[0m
+2026-10-13T20:19:36.3766160Z ##[error]Process completed with exit code 1.
+2026-10-13T20:19:36.4122978Z Post job cleanup.
+2026-10-13T20:19:36.5093101Z [command]/usr/bin/git version
+2026-10-13T20:19:36.5134840Z git version 2.55.0
+2026-10-13T20:19:36.5179748Z Temporarily overriding HOME='/home/runner/work/_temp/6df3e427-23dc-44fb-a4c1-4cc03b8ab321' before making global git config changes
+2026-10-13T20:19:36.5184222Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T20:19:36.5189804Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:36.5240401Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T20:19:36.5288835Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T20:19:36.5566974Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T20:19:36.5605486Z http.https://github.com/.extraheader
+2026-10-13T20:19:36.5624680Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-13T20:19:36.5666050Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T20:19:36.5957029Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T20:19:36.6017572Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T20:19:36.6454045Z Cleaning up orphan processes
+2026-10-13T20:19:36.6887141Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

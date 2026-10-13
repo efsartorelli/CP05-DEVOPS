@@ -1,17 +1,21 @@
-# Estado das evidências do GitHub Actions
+# Evidências autênticas do GitHub Actions
 
-As capturas `01-gitleaks.png`, `02-semgrep.png` e `03-trivy.png` ainda **não existem**. Esta pasta não contém capturas simuladas.
+Repositório: [efsartorelli/CP05-DEVOPS](https://github.com/efsartorelli/CP05-DEVOPS). Todas as execuções abaixo ocorreram em 13/10/2026. As branches de sabotagem permanecem isoladas da `main`.
 
-Em 13/10/2026, o diretório local não tinha remoto GitHub configurado, `gh` não estava instalado e não havia Docker disponível no terminal. Portanto, nenhuma execução do GitHub Actions ou imagem construída foi confirmada. As URLs dos runs e os CVEs da imagem do projeto estão pendentes.
+| Prova | Captura do run | Log integral do job | Execução |
+| --- | --- | --- | --- |
+| Gitleaks | [01-gitleaks.png](01-gitleaks.png) | [01-gitleaks-github.txt](01-gitleaks-github.txt) | [run 38461907382](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382) |
+| Semgrep | [02-semgrep.png](02-semgrep.png) | [02-semgrep-github.txt](02-semgrep-github.txt) | [run 38461915387](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387) |
+| Trivy | [03-trivy.png](03-trivy.png) | [03-trivy-github.txt](03-trivy-github.txt) | [run 38462913681](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681) |
 
-Resultados locais confirmados:
+As imagens são capturas diretas das páginas de resumo do GitHub Actions. Elas mostram repositório, usuário, workflow, branch e status dos jobs. A visualização pública pede login para abrir o texto dos logs. Os arquivos `.txt` foram baixados da API autenticada do GitHub, sem alterar as mensagens das ferramentas, e trazem os detalhes que justificam cada status. Nenhum print ou resultado foi simulado.
 
-| Etapa | Resultado local | Limite da evidência |
-| --- | --- | --- |
-| Gitleaks na branch `prova/gitleaks` | 1 achado `fiap-cp05-fake-token`, saída 1 | Não é captura do GitHub Actions |
-| Semgrep na branch `prova/semgrep` | 1 achado `fiap-cp05-no-eval` em `app.js`, saída 1 | Não é captura do GitHub Actions |
-| Trivy | Imagem-base remota: 1 CVE `MEDIUM`, 0 `CRITICAL`; saída 0 na política crítica | A imagem do projeto não foi construída |
+## Resultados verificados
 
-Logs autênticos dos testes locais: [gitleaks-local.txt](gitleaks-local.txt), [semgrep-local.txt](semgrep-local.txt) e [trivy-base-local.txt](trivy-base-local.txt). O último arquivo analisa somente a imagem-base remota `nginxinc/nginx-unprivileged:stable-alpine`, digest `sha256:56b8272e43a0525f67aed68d1e0794a712d10e3e45a563e118e9a77c817e6f86`. Em 13/10/2026, o achado foi `CVE-2026-85091`, severidade `MEDIUM`, pacote `zlib` 1.3.2-r0, corrigido em 1.3.2-r1. O resultado não pode ser transferido automaticamente para uma imagem construída em outro momento.
+- **Gitleaks:** o job da branch `prova/gitleaks` falhou com `RuleID: fiap-cp05-fake-token`, `leaks found: 1` e saída 1. O valor foi redigido pela ferramenta. [Job direto](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382/job/115518951676).
+- **Semgrep:** o job da branch `prova/semgrep` falhou com `semgrep.fiap-cp05-no-eval`, `Findings: 1 (1 blocking)` e saída 1. [Job direto](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387/job/115518978001).
+- **Trivy:** no run da `main`, o runner construiu `fiap-cp05:f074f1da9053a1a97aa7682e18f725942dfa72fc`, iniciou o contêiner e obteve HTTP 200. A análise da imagem construída encontrou 1 `MEDIUM` e 0 `CRITICAL`, logo a política de bloqueio crítico passou. [Job direto](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681/job/115522410054).
 
-Para completar a entrega, configure o remoto, publique `main` e as duas branches de prova sem mesclá-las, abra as execuções do workflow **Security Pipeline** e capture a página de cada job com repositório, usuário, data, status e mensagem da ferramenta visíveis. Guarde as imagens sob os nomes acima e atualize o relatório com as URLs reais e o resultado do Trivy.
+O CVE da imagem construída é `CVE-2026-85091` em zlib 1.3.2-r0, com atualização indicada para 1.3.2-r1. O relatório completo da execução está em [03-trivy-github-report.json](03-trivy-github-report.json) e no [artefato do run](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681/artifacts/11847630669). A presença de uma CVE `MEDIUM` foi mantida no relatório, sem exclusões para produzir um resultado artificialmente limpo.
+
+Também estão preservados os logs dos ensaios locais: [gitleaks-local.txt](gitleaks-local.txt), [semgrep-local.txt](semgrep-local.txt) e [trivy-base-local.txt](trivy-base-local.txt). O último é uma análise separada da imagem-base remota, anterior ao build no GitHub.

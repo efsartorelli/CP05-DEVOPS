@@ -1,0 +1,248 @@
+﻿2026-10-13T20:19:36.7004681Z Current runner version: '2.337.0'
+2026-10-13T20:19:36.7022220Z ##[group]Runner Image Provisioner
+2026-10-13T20:19:36.7022758Z Hosted Compute Agent
+2026-10-13T20:19:36.7023206Z Version: 20261002.596
+2026-10-13T20:19:36.7023610Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-13T20:19:36.7024203Z Build Date: 2026-10-02T22:28:27Z
+2026-10-13T20:19:36.7024686Z Worker ID: {98077406-3c5a-495c-9837-092134ad8165}
+2026-10-13T20:19:36.7025098Z Region: centralus
+2026-10-13T20:19:36.7025470Z Cloud: Azure
+2026-10-13T20:19:36.7025807Z ##[endgroup]
+2026-10-13T20:19:36.7026713Z ##[group]Operating System
+2026-10-13T20:19:36.7027162Z Ubuntu
+2026-10-13T20:19:36.7027480Z 24.04.5
+2026-10-13T20:19:36.7027829Z LTS
+2026-10-13T20:19:36.7028155Z ##[endgroup]
+2026-10-13T20:19:36.7028515Z ##[group]Runner Image
+2026-10-13T20:19:36.7028927Z Image: ubuntu-24.04
+2026-10-13T20:19:36.7029270Z Version: 20261004.327.1
+2026-10-13T20:19:36.7030060Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-13T20:19:36.7030974Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-13T20:19:36.7031584Z ##[endgroup]
+2026-10-13T20:19:36.7032254Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T20:19:36.7033625Z Contents: read
+2026-10-13T20:19:36.7034265Z Metadata: read
+2026-10-13T20:19:36.7034595Z ##[endgroup]
+2026-10-13T20:19:36.7036027Z Secret source: Actions
+2026-10-13T20:19:36.7036545Z Cache mode: write
+2026-10-13T20:19:36.7037035Z Prepare workflow directory
+2026-10-13T20:19:36.7275910Z Prepare all required actions
+2026-10-13T20:19:36.7306650Z Getting action download info
+2026-10-13T20:19:36.9415298Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-13T20:19:37.0587541Z Complete job name: Semgrep | JavaScript
+2026-10-13T20:19:37.1074015Z ##[group]Run actions/checkout@v4
+2026-10-13T20:19:37.1074505Z with:
+2026-10-13T20:19:37.1074754Z   repository: efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:37.1076851Z   token: ***
+2026-10-13T20:19:37.1077080Z   ssh-strict: true
+2026-10-13T20:19:37.1077314Z   ssh-user: git
+2026-10-13T20:19:37.1077552Z   persist-credentials: true
+2026-10-13T20:19:37.1077811Z   clean: true
+2026-10-13T20:19:37.1078050Z   sparse-checkout-cone-mode: true
+2026-10-13T20:19:37.1078326Z   fetch-depth: 1
+2026-10-13T20:19:37.1078556Z   fetch-tags: false
+2026-10-13T20:19:37.1078798Z   show-progress: true
+2026-10-13T20:19:37.1079034Z   lfs: false
+2026-10-13T20:19:37.1079273Z   submodules: false
+2026-10-13T20:19:37.1079518Z   set-safe-directory: true
+2026-10-13T20:19:37.1079787Z   allow-unsafe-pr-checkout: false
+2026-10-13T20:19:37.1080134Z ##[endgroup]
+2026-10-13T20:19:37.1691337Z Syncing repository: efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:37.1692772Z ##[group]Getting Git version info
+2026-10-13T20:19:37.1693332Z Working directory is '/home/runner/work/CP05-DEVOPS/CP05-DEVOPS'
+2026-10-13T20:19:37.1694110Z [command]/usr/bin/git version
+2026-10-13T20:19:37.1775247Z git version 2.55.0
+2026-10-13T20:19:37.1788712Z ##[endgroup]
+2026-10-13T20:19:37.1799225Z Temporarily overriding HOME='/home/runner/work/_temp/2903932e-cdf9-4f2d-abca-f8c934aea29a' before making global git config changes
+2026-10-13T20:19:37.1800349Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T20:19:37.1802719Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:37.1850762Z Deleting the contents of '/home/runner/work/CP05-DEVOPS/CP05-DEVOPS'
+2026-10-13T20:19:37.1876906Z ##[group]Initializing the repository
+2026-10-13T20:19:37.1879996Z [command]/usr/bin/git init /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:37.1992215Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-13T20:19:37.1993119Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-13T20:19:37.1994047Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-13T20:19:37.1994986Z hint: call:
+2026-10-13T20:19:37.1995324Z hint:
+2026-10-13T20:19:37.1995740Z hint: 	git config --global init.defaultBranch <name>
+2026-10-13T20:19:37.1996248Z hint:
+2026-10-13T20:19:37.1996708Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-13T20:19:37.1997189Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-13T20:19:37.1997571Z hint:
+2026-10-13T20:19:37.1997792Z hint: 	git branch -m <name>
+2026-10-13T20:19:37.1998076Z hint:
+2026-10-13T20:19:37.1998466Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-13T20:19:37.1999014Z Initialized empty Git repository in /home/runner/work/CP05-DEVOPS/CP05-DEVOPS/.git/
+2026-10-13T20:19:37.2000314Z [command]/usr/bin/git remote add origin https://github.com/efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:37.2068323Z ##[endgroup]
+2026-10-13T20:19:37.2069021Z ##[group]Disabling automatic garbage collection
+2026-10-13T20:19:37.2080076Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-13T20:19:37.2111049Z ##[endgroup]
+2026-10-13T20:19:37.2111471Z ##[group]Setting up auth
+2026-10-13T20:19:37.2111864Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T20:19:37.2145907Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T20:19:37.2437466Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T20:19:37.2464761Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T20:19:37.2630769Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T20:19:37.2659404Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T20:19:37.2823967Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-13T20:19:37.2854850Z ##[endgroup]
+2026-10-13T20:19:37.2855503Z ##[group]Fetching the repository
+2026-10-13T20:19:37.2860903Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0225a55fbaa45f337e4e65bb0a800b8c8428f7c1:refs/remotes/origin/prova/semgrep
+2026-10-13T20:19:37.5526636Z From https://github.com/efsartorelli/CP05-DEVOPS
+2026-10-13T20:19:37.5527695Z  * [new ref]         0225a55fbaa45f337e4e65bb0a800b8c8428f7c1 -> origin/prova/semgrep
+2026-10-13T20:19:37.5530406Z ##[endgroup]
+2026-10-13T20:19:37.5531227Z ##[group]Determining the checkout info
+2026-10-13T20:19:37.5532696Z ##[endgroup]
+2026-10-13T20:19:37.5538097Z [command]/usr/bin/git sparse-checkout disable
+2026-10-13T20:19:37.5583846Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-13T20:19:37.5611624Z ##[group]Checking out the ref
+2026-10-13T20:19:37.5615397Z [command]/usr/bin/git checkout --progress --force -B prova/semgrep refs/remotes/origin/prova/semgrep
+2026-10-13T20:19:37.5665897Z Switched to a new branch 'prova/semgrep'
+2026-10-13T20:19:37.5672601Z branch 'prova/semgrep' set up to track 'origin/prova/semgrep'.
+2026-10-13T20:19:37.5675964Z ##[endgroup]
+2026-10-13T20:19:37.5709175Z [command]/usr/bin/git log -1 --format=%H
+2026-10-13T20:19:37.5730219Z 0225a55fbaa45f337e4e65bb0a800b8c8428f7c1
+2026-10-13T20:19:37.5942404Z ##[group]Run docker run --rm -v "$PWD:/src" -w /src semgrep/semgrep:1.140.0 \
+2026-10-13T20:19:37.5943809Z [36;1mdocker run --rm -v "$PWD:/src" -w /src semgrep/semgrep:1.140.0 \[0m
+2026-10-13T20:19:37.5944937Z [36;1m  semgrep scan --config .semgrep/eval.yml --error --metrics=off .[0m
+2026-10-13T20:19:37.6226852Z shell: /usr/bin/bash -e {0}
+2026-10-13T20:19:37.6227409Z ##[endgroup]
+2026-10-13T20:19:37.7097925Z Unable to find image 'semgrep/semgrep:1.140.0' locally
+2026-10-13T20:19:38.3439938Z 1.140.0: Pulling from semgrep/semgrep
+2026-10-13T20:19:38.5146073Z 2d35ebdb57d9: Pulling fs layer
+2026-10-13T20:19:38.5146817Z 5e3b8024c4af: Pulling fs layer
+2026-10-13T20:19:38.5148568Z ff7186eb7fbb: Pulling fs layer
+2026-10-13T20:19:38.5149086Z bf41855c1aad: Pulling fs layer
+2026-10-13T20:19:38.5149577Z 1da5f6a90edf: Pulling fs layer
+2026-10-13T20:19:38.5150093Z a11d95c9d9eb: Pulling fs layer
+2026-10-13T20:19:38.5150613Z 15617a8ab794: Pulling fs layer
+2026-10-13T20:19:38.5152374Z bd9ddc54bea9: Pulling fs layer
+2026-10-13T20:19:38.5152917Z 2fb1359d4403: Pulling fs layer
+2026-10-13T20:19:38.5155389Z 88b2bff32f6d: Pulling fs layer
+2026-10-13T20:19:38.5157330Z 132d08a316d7: Pulling fs layer
+2026-10-13T20:19:38.5157848Z 81736fe1f116: Pulling fs layer
+2026-10-13T20:19:38.5159640Z 4bb34b73ecc6: Pulling fs layer
+2026-10-13T20:19:38.5160284Z 95b1c20ae536: Pulling fs layer
+2026-10-13T20:19:38.5162006Z 8c82ae7cbdee: Pulling fs layer
+2026-10-13T20:19:38.5162601Z 404048c7cd6a: Pulling fs layer
+2026-10-13T20:19:38.5163098Z b643f72d0660: Pulling fs layer
+2026-10-13T20:19:38.5164941Z 25cfd8dee518: Pulling fs layer
+2026-10-13T20:19:38.5165442Z a11d95c9d9eb: Waiting
+2026-10-13T20:19:38.5167085Z 15617a8ab794: Waiting
+2026-10-13T20:19:38.5167622Z 4bb34b73ecc6: Waiting
+2026-10-13T20:19:38.5168177Z bd9ddc54bea9: Waiting
+2026-10-13T20:19:38.5169884Z 95b1c20ae536: Waiting
+2026-10-13T20:19:38.5170449Z 2fb1359d4403: Waiting
+2026-10-13T20:19:38.5171020Z 8c82ae7cbdee: Waiting
+2026-10-13T20:19:38.5171585Z 88b2bff32f6d: Waiting
+2026-10-13T20:19:38.5173353Z 404048c7cd6a: Waiting
+2026-10-13T20:19:38.5174074Z b643f72d0660: Waiting
+2026-10-13T20:19:38.5176010Z 132d08a316d7: Waiting
+2026-10-13T20:19:38.5176577Z 25cfd8dee518: Waiting
+2026-10-13T20:19:38.5178392Z 81736fe1f116: Waiting
+2026-10-13T20:19:38.5178964Z 1da5f6a90edf: Waiting
+2026-10-13T20:19:38.5180010Z bf41855c1aad: Waiting
+2026-10-13T20:19:38.7292694Z 2d35ebdb57d9: Verifying Checksum
+2026-10-13T20:19:38.7293127Z 2d35ebdb57d9: Download complete
+2026-10-13T20:19:38.8029198Z ff7186eb7fbb: Verifying Checksum
+2026-10-13T20:19:38.8029823Z ff7186eb7fbb: Download complete
+2026-10-13T20:19:38.8258204Z 2d35ebdb57d9: Pull complete
+2026-10-13T20:19:38.8489479Z 5e3b8024c4af: Verifying Checksum
+2026-10-13T20:19:38.8489821Z 5e3b8024c4af: Download complete
+2026-10-13T20:19:38.9766377Z 1da5f6a90edf: Verifying Checksum
+2026-10-13T20:19:38.9768990Z bf41855c1aad: Verifying Checksum
+2026-10-13T20:19:38.9769409Z bf41855c1aad: Download complete
+2026-10-13T20:19:38.9770154Z 1da5f6a90edf: Download complete
+2026-10-13T20:19:39.1136766Z bd9ddc54bea9: Verifying Checksum
+2026-10-13T20:19:39.1137275Z bd9ddc54bea9: Download complete
+2026-10-13T20:19:39.2864947Z 2fb1359d4403: Download complete
+2026-10-13T20:19:39.2966150Z a11d95c9d9eb: Verifying Checksum
+2026-10-13T20:19:39.3007565Z a11d95c9d9eb: Download complete
+2026-10-13T20:19:39.3603893Z 15617a8ab794: Verifying Checksum
+2026-10-13T20:19:39.3604708Z 15617a8ab794: Download complete
+2026-10-13T20:19:39.4617295Z 88b2bff32f6d: Verifying Checksum
+2026-10-13T20:19:39.4617623Z 88b2bff32f6d: Download complete
+2026-10-13T20:19:39.6915110Z 81736fe1f116: Verifying Checksum
+2026-10-13T20:19:39.6916165Z 81736fe1f116: Download complete
+2026-10-13T20:19:39.7419343Z 4bb34b73ecc6: Download complete
+2026-10-13T20:19:39.8598458Z 95b1c20ae536: Verifying Checksum
+2026-10-13T20:19:39.8603487Z 95b1c20ae536: Download complete
+2026-10-13T20:19:39.8892048Z 8c82ae7cbdee: Verifying Checksum
+2026-10-13T20:19:39.8893026Z 8c82ae7cbdee: Download complete
+2026-10-13T20:19:39.9577741Z 132d08a316d7: Verifying Checksum
+2026-10-13T20:19:39.9578176Z 132d08a316d7: Download complete
+2026-10-13T20:19:39.9987315Z 404048c7cd6a: Verifying Checksum
+2026-10-13T20:19:39.9987629Z 404048c7cd6a: Download complete
+2026-10-13T20:19:40.0318038Z b643f72d0660: Verifying Checksum
+2026-10-13T20:19:40.0318346Z b643f72d0660: Download complete
+2026-10-13T20:19:40.1020049Z 25cfd8dee518: Verifying Checksum
+2026-10-13T20:19:40.1020278Z 25cfd8dee518: Download complete
+2026-10-13T20:19:43.9475010Z 5e3b8024c4af: Pull complete
+2026-10-13T20:19:43.9742505Z ff7186eb7fbb: Pull complete
+2026-10-13T20:19:43.9838366Z bf41855c1aad: Pull complete
+2026-10-13T20:19:43.9906930Z 1da5f6a90edf: Pull complete
+2026-10-13T20:19:46.2419796Z a11d95c9d9eb: Pull complete
+2026-10-13T20:19:47.9201811Z 15617a8ab794: Pull complete
+2026-10-13T20:19:47.9285985Z bd9ddc54bea9: Pull complete
+2026-10-13T20:19:47.9355272Z 2fb1359d4403: Pull complete
+2026-10-13T20:19:47.9432985Z 88b2bff32f6d: Pull complete
+2026-10-13T20:19:53.0492032Z 132d08a316d7: Pull complete
+2026-10-13T20:19:53.1960623Z 81736fe1f116: Pull complete
+2026-10-13T20:19:53.2161786Z 4bb34b73ecc6: Pull complete
+2026-10-13T20:19:53.2231961Z 95b1c20ae536: Pull complete
+2026-10-13T20:19:53.2283618Z 8c82ae7cbdee: Pull complete
+2026-10-13T20:19:53.2371192Z 404048c7cd6a: Pull complete
+2026-10-13T20:19:53.2431110Z b643f72d0660: Pull complete
+2026-10-13T20:19:53.2489872Z 25cfd8dee518: Pull complete
+2026-10-13T20:19:53.2518544Z Digest: sha256:4372a1de903521f9f10f877b6caf15d150d17e1ca592582682c8d02b77cbd4f6
+2026-10-13T20:19:53.2531897Z Status: Downloaded newer image for semgrep/semgrep:1.140.0
+2026-10-13T20:19:54.4815447Z                
+2026-10-13T20:19:54.4815733Z                
+2026-10-13T20:19:54.4816247Z ┌─────────────┐
+2026-10-13T20:19:54.4816529Z │ Scan Status │
+2026-10-13T20:19:54.4816709Z └─────────────┘
+2026-10-13T20:19:54.4816914Z   Scanning 10 files tracked by git with 1 Code rule:
+2026-10-13T20:19:54.4817193Z   Scanning 1 file.
+2026-10-13T20:19:54.7304057Z                   
+2026-10-13T20:19:54.7304281Z                   
+2026-10-13T20:19:54.7304649Z ┌────────────────┐
+2026-10-13T20:19:54.7304776Z │ 1 Code Finding │
+2026-10-13T20:19:54.7304900Z └────────────────┘
+2026-10-13T20:19:54.7305159Z           
+2026-10-13T20:19:54.7305263Z     app.js
+2026-10-13T20:19:54.7305491Z    ❯❯❱ semgrep.fiap-cp05-no-eval
+2026-10-13T20:19:54.7305972Z           Evite eval(): executar texto como JavaScript permite execução de código não confiável.
+2026-10-13T20:19:54.7306328Z                                                                                                 
+2026-10-13T20:19:54.7306602Z            52┆ function exemploInseguro(entrada) { return eval(entrada); }
+2026-10-13T20:19:54.7306759Z 
+2026-10-13T20:19:54.7349037Z                 
+2026-10-13T20:19:54.7349248Z                 
+2026-10-13T20:19:54.7349521Z ┌──────────────┐
+2026-10-13T20:19:54.7349698Z │ Scan Summary │
+2026-10-13T20:19:54.7349880Z └──────────────┘
+2026-10-13T20:19:54.7350091Z ✅ Scan completed successfully.
+2026-10-13T20:19:54.7350386Z  • Findings: 1 (1 blocking)
+2026-10-13T20:19:54.7350594Z  • Rules run: 1
+2026-10-13T20:19:54.7350780Z  • Targets scanned: 1
+2026-10-13T20:19:54.7350987Z  • Parsed lines: ~100.0%
+2026-10-13T20:19:54.7351233Z  • Scan was limited to files tracked by git
+2026-10-13T20:19:54.7351681Z  • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+2026-10-13T20:19:54.7352137Z Ran 1 rule on 1 file: 1 finding.
+2026-10-13T20:19:55.0417422Z ##[error]Process completed with exit code 1.
+2026-10-13T20:19:55.0559692Z Post job cleanup.
+2026-10-13T20:19:55.1062370Z [command]/usr/bin/git version
+2026-10-13T20:19:55.1094318Z git version 2.55.0
+2026-10-13T20:19:55.1116513Z Temporarily overriding HOME='/home/runner/work/_temp/6a025527-eeac-4c8d-a579-23df901c5b60' before making global git config changes
+2026-10-13T20:19:55.1117197Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T20:19:55.1119830Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CP05-DEVOPS/CP05-DEVOPS
+2026-10-13T20:19:55.1150646Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T20:19:55.1177269Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T20:19:55.1374766Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T20:19:55.1406616Z http.https://github.com/.extraheader
+2026-10-13T20:19:55.1410967Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-13T20:19:55.1440934Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T20:19:55.1635426Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T20:19:55.1667470Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T20:19:55.1955665Z Cleaning up orphan processes
+2026-10-13T20:19:55.2195392Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

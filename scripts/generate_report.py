@@ -10,7 +10,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    HRFlowable, KeepTogether, PageBreak, Paragraph, Preformatted,
+    HRFlowable, Image, KeepTogether, PageBreak, Paragraph, Preformatted,
     SimpleDocTemplate, Spacer, Table, TableStyle,
 )
 
@@ -62,6 +62,13 @@ def box(title, body, bg=LIGHT):
         ("BOTTOMPADDING", (0, -1), (-1, -1), 10),
     ]))
     return table
+
+
+def screenshot(name):
+    path = ROOT / "evidencias" / name
+    image = Image(str(path), width=166 * mm, height=121 * mm)
+    image.hAlign = "CENTER"
+    return image
 
 
 def page_header(canvas, doc):
@@ -118,57 +125,47 @@ story += [tag("01 / Visão geral"), p("Introdução", "SectionTitleCP"),
           p("Aplicação analisada", "SubTitleCP"),
           p("O repositório começou vazio. Foi criada uma aplicação HTML/CSS/JavaScript sem dependências de produção, servida por Nginx sem privilégios na porta interna 8080. O painel apresenta as três barreiras e uma lista local de estudo salva no navegador. O progresso da interface não representa o estado dos jobs."),
           p("Estado de validação", "SubTitleCP"),
-          p("A aplicação respondeu por HTTP local e o JavaScript passou na verificação de sintaxe. O workflow YAML foi interpretado com os gatilhos e três jobs esperados. O ambiente não dispõe de Docker nem de remoto GitHub configurado; por isso o build, a execução do workflow no GitHub e as capturas exigidas seguem pendentes."),
+          p("A aplicação respondeu por HTTP local, o JavaScript passou na verificação de sintaxe e o YAML passou no actionlint. O repositório foi publicado no GitHub. No run 38462913681 da main, os três jobs passaram; a imagem foi construída e o contêiner respondeu HTTP 200. Os runs isolados falharam respectivamente no Gitleaks e no Semgrep, como previsto."),
           PageBreak()]
 
 # Gitleaks
 story += [tag("02 / Primeira barreira"), p("Gitleaks: segredos no histórico", "SectionTitleCP"),
-          p("O Gitleaks procura credenciais expostas em commits. O job instala a versão 8.30.0, usa <b>fetch-depth: 0</b>, estende as regras padrão e acrescenta uma regra local que identifica apenas o formato fictício do teste. A execução usa saída 1 em caso de achado e redige o valor do segredo no log."),
-          p("Sabotagem isolada", "SubTitleCP"),
-          p("A branch <b>prova/gitleaks</b> recebeu um commit com um token inteiramente fictício no arquivo de teste. A análise local percorreu dois commits, encontrou um achado com <b>RuleID fiap-cp05-fake-token</b> e terminou com <b>código 1</b>. A branch main não contém o arquivo de sabotagem. O log autêntico está em <b>evidencias/gitleaks-local.txt</b>."),
-          box("Resultado local confirmado", "1 achado · RuleID fiap-cp05-fake-token · saída 1 · commit c68a4d5. Trata-se de falha esperada de segurança, não de erro de configuração."),
-          Spacer(1, 9 * mm),
-          box("Captura do GitHub Actions: PENDENTE", "Não há execução remota confirmada. A captura 01-gitleaks.png deve ser obtida do job gitleaks após publicar a branch isolada. Nenhum print foi fabricado."),
-          Spacer(1, 9 * mm),
-          p("Por que importa", "SubTitleCP"),
-          p("Segredos em commits podem continuar acessíveis mesmo após a remoção do arquivo em uma revisão posterior. A resposta a um segredo real seria revogá-lo ou rotacioná-lo e avaliar o histórico afetado. Este teste usa exclusivamente um valor fictício."),
+          p("O Gitleaks 8.30.0 procura credenciais em commits. O job usa <b>fetch-depth: 0</b>, estende as regras padrão e acrescenta uma assinatura para o token fictício da prova. A branch <b>prova/gitleaks</b> contém o commit isolado c68a4d5, sem merge na main."),
+          p("No run 38461907382, o job Gitleaks falhou em 13/10/2026 às 20:19 UTC. O log autêntico mostra <b>RuleID fiap-cp05-fake-token</b>, <b>leaks found: 1</b> e <b>exit code 1</b>. O valor foi redigido. Isso confirma uma falha esperada de segurança. Segredos reais expostos exigiriam revogação ou rotação, mesmo após remover o arquivo em novo commit."),
+          screenshot("01-gitleaks.png"),
+          box("Trecho do log do GitHub Actions", "RuleID: fiap-cp05-fake-token  |  leaks found: 1  |  Process completed with exit code 1."),
+          p("Captura autêntica do run no GitHub Actions. O detalhe da regra está em evidencias/01-gitleaks-github.txt. URL: github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382", "SmallCP"),
           PageBreak()]
 
 # Semgrep
 story += [tag("03 / Segunda barreira"), p("Semgrep: análise estática", "SectionTitleCP"),
-          p("O Semgrep 1.140.0 examina os arquivos JavaScript do repositório. A regra local <b>fiap-cp05-no-eval</b>, criada especificamente para a demonstração, identifica chamadas <b>eval(...)</b>. A opção <b>--error</b> faz um achado resultar em falha do job."),
-          p("Exemplo inserido somente na branch prova/semgrep", "SubTitleCP"),
+          p("O Semgrep 1.140.0 analisa JavaScript. A regra local <b>fiap-cp05-no-eval</b>, criada para esta demonstração, identifica <b>eval(...)</b>; a opção <b>--error</b> torna o achado bloqueante. A branch <b>prova/semgrep</b> recebeu o exemplo abaixo, que não é executado:"),
           Preformatted("function exemploInseguro(entrada) { return eval(entrada); }", styles["CodeCP"]),
-          Spacer(1, 5 * mm),
-          p("A função acima não é chamada na demonstração. A análise local apontou <b>1 finding</b> na linha 52 de app.js com a regra <b>semgrep.fiap-cp05-no-eval</b> e terminou com <b>código 1</b>. Na branch main, a mesma varredura terminou com zero achados e código 0. O log autêntico está em <b>evidencias/semgrep-local.txt</b>."),
-          box("Resultado local confirmado", "1 achado bloqueante na branch de prova · saída 1 · commit 0225a55. O código vulnerável não foi incorporado à main."),
-          Spacer(1, 9 * mm),
-          box("Captura do GitHub Actions: PENDENTE", "A captura 02-semgrep.png precisa mostrar a falha real do job semgrep depois que a branch de prova for publicada."),
-          Spacer(1, 9 * mm),
-          p("Risco de eval", "SubTitleCP"),
-          p("eval interpreta texto como código JavaScript. Quando a entrada pode ser influenciada por terceiros, a execução pode alterar o comportamento esperado da aplicação e permitir acesso indevido a dados ou funções do contexto."),
+          p("No run 38461915387, o job Semgrep falhou em 13/10/2026 às 20:19 UTC com <b>1 finding (1 blocking)</b>, regra <b>semgrep.fiap-cp05-no-eval</b> em app.js e <b>exit code 1</b>. A main passou sem achados. eval interpreta texto como código JavaScript e pode executar entrada influenciada por terceiros."),
+          screenshot("02-semgrep.png"),
+          box("Trecho do log do GitHub Actions", "semgrep.fiap-cp05-no-eval  |  Findings: 1 (1 blocking)  |  Process completed with exit code 1."),
+          p("Captura autêntica do run no GitHub Actions. O achado detalhado está em evidencias/02-semgrep-github.txt. URL: github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387", "SmallCP"),
           PageBreak()]
 
 # Trivy
 story += [tag("04 / Terceira barreira"), p("Trivy: vulnerabilidades da imagem", "SectionTitleCP"),
-          p("O job trivy constrói <b>fiap-cp05:${{ github.sha }}</b> a partir do Dockerfile do repositório. Depois gera um JSON como artefato, mostra uma tabela com todas as severidades nos logs e executa a política final que retorna código 1 somente se houver vulnerabilidades <b>CRITICAL</b>. Nenhuma vulnerabilidade é ignorada para limpar artificialmente o relatório."),
-          p("Observação local da imagem-base", "SubTitleCP"),
-          p("Como não havia Docker disponível, o Trivy 0.75.0 analisou diretamente a imagem-base remota <b>nginxinc/nginx-unprivileged:stable-alpine</b> em 13/10/2026. O digest observado foi <b>sha256:56b8272e43a0525f67aed68d1e0794a712d10e3e45a563e118e9a77c817e6f86</b>. Esse teste <b>não valida a imagem do projeto</b>, que ainda precisa ser construída."),
-          box("Achado real da imagem-base", "CVE-2026-85091 · MEDIUM · zlib 1.3.2-r0 · correção indicada: 1.3.2-r1. Nenhuma CRITICAL foi encontrada nessa imagem-base; a verificação local com --severity CRITICAL --exit-code 1 retornou 0."),
-          Spacer(1, 7 * mm),
-          p("Interpretação", "SubTitleCP"),
-          p("CVE é um identificador público de vulnerabilidade. A severidade MEDIUM indica risco abaixo do limite de bloqueio definido para o CP05, mas ainda deve ser acompanhada e corrigida quando uma atualização segura estiver disponível. A tag da imagem-base pode mudar; uma execução posterior pode apresentar outros resultados. O log local consta em <b>evidencias/trivy-base-local.txt</b>."),
-          box("Captura e resultado da imagem construída: PENDENTES", "A captura 03-trivy.png, os CVEs da imagem do projeto e a confirmação do status do job dependem de build Docker e execução do GitHub Actions."),
+          p("O job construiu <b>fiap-cp05:f074f1da9053a1a97aa7682e18f725942dfa72fc</b> a partir do Dockerfile e confirmou resposta HTTP 200 na porta 8080 do contêiner. O Trivy examinou a imagem construída, publicou um JSON como artefato, exibiu a tabela nos logs e aplicou a política de bloqueio para <b>CRITICAL</b>."),
+          p("No run 38462913681, a tabela apresentou <b>1 CVE MEDIUM</b> e <b>0 CRITICAL</b>: <b>CVE-2026-85091</b> no pacote zlib 1.3.2-r0, com correção indicada em 1.3.2-r1. O job passou porque MEDIUM está abaixo do limite definido. Isso não significa ausência de vulnerabilidades; o pacote deve ser reavaliado em atualização segura da imagem-base."),
+          screenshot("03-trivy.png"),
+          box("Trecho do log do GitHub Actions", "Total: 1 (MEDIUM: 1, CRITICAL: 0)  |  zlib  |  CVE-2026-85091  |  Aplicação respondeu HTTP 200 dentro do contêiner."),
+          p("Captura autêntica do run na main. Tabela e build: evidencias/03-trivy-github.txt; relatório completo: evidencias/03-trivy-github-report.json. URL: github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681", "SmallCP"),
           PageBreak()]
 
 # Conclusão e repositório
 story += [tag("05 / Encerramento"), p("Conclusão", "SectionTitleCP"),
-          p("As três ferramentas protegem etapas diferentes: Gitleaks examina exposição de credenciais no histórico; Semgrep identifica um padrão de código inseguro; Trivy relaciona pacotes da imagem a CVEs. As sabotagens locais confirmaram o bloqueio do Gitleaks e do Semgrep. A varredura local do Trivy confirmou seu funcionamento contra a imagem-base, com um achado MEDIUM; a validação da imagem construída permanece pendente."),
+          p("As três ferramentas protegem etapas diferentes: Gitleaks examina exposição de credenciais no histórico; Semgrep identifica um padrão de código inseguro; Trivy relaciona pacotes da imagem a CVEs. O pipeline executou os três jobs na main com sucesso e bloqueou as duas sabotagens em branches isoladas. O Trivy registrou uma CVE MEDIUM na imagem construída e manteve o job aprovado pela política que bloqueia CRITICAL."),
           p("Repositório e execuções", "SectionTitleCP"),
-          box("URL do GitHub: PENDENTE", "O diretório local ainda não possui remoto. Não há links de runs para registrar. Após a publicação, incluir aqui a URL do repositório e as URLs das três execuções usadas como evidência."),
+          p("Repositório: <link href='https://github.com/efsartorelli/CP05-DEVOPS' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS</link>", "BodyCP"),
+          p("Gitleaks (falha esperada): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382</link>", "SmallCP"),
+          p("Semgrep (falha esperada): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387</link>", "SmallCP"),
+          p("Trivy e main (sucesso): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681</link>", "SmallCP"),
           Spacer(1, 8 * mm),
-          p("Pendências para a entrega integral", "SubTitleCP"),
-          p("1. Construir e executar a imagem Docker do projeto.<br/>2. Publicar main e as duas branches de prova sem mesclá-las.<br/>3. Confirmar os três jobs no GitHub Actions, incluindo CVEs e política do Trivy.<br/>4. Capturar 01-gitleaks.png, 02-semgrep.png e 03-trivy.png a partir de runs reais.<br/>5. Acrescentar URLs, resultados remotos e imagens autênticas a este relatório."),
+          box("Integridade das evidências", "As três imagens são capturas diretas das páginas dos runs no GitHub Actions. A visualização pública pede login para mostrar logs; por isso os logs autênticos foram baixados pela API autenticada e preservados ao lado das imagens. Os arquivos de sabotagem nunca foram mesclados à main."),
           Spacer(1, 8 * mm),
           HRFlowable(color=LINE, width="100%"), Spacer(1, 6 * mm),
           p("Fontes técnicas", "SubTitleCP"),

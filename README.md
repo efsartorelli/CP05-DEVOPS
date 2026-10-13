@@ -47,9 +47,11 @@ O workflow roda em `push` e `pull_request` e contém exatamente três jobs:
 
 O Trivy mostra uma tabela com todas as severidades nos logs, gera um JSON como artefato e executa uma última verificação que bloqueia somente `CRITICAL`. A regra local do Semgrep foi criada para demonstrar a detecção exigida no CP05. A configuração do Gitleaks estende as regras padrão e acrescenta uma assinatura exclusiva do token fictício usado no teste.
 
+O job `trivy` também inicia o contêiner no runner e verifica uma resposta HTTP 200 em `127.0.0.1:8080` antes da análise da imagem.
+
 ## Reproduzir as sabotagens
 
-As branches locais `prova/gitleaks` e `prova/semgrep` contêm commits isolados, criados a partir de `main`. **Não faça merge dessas branches.** Os exemplos são fictícios e não incluem credenciais reais. Quando o projeto estiver publicado no GitHub, envie essas branches separadamente para acionar o workflow.
+As branches `prova/gitleaks` e `prova/semgrep` contêm commits isolados, criados a partir de `main`, e já estão publicadas no GitHub. **Não faça merge dessas branches.** Os exemplos são fictícios e não incluem credenciais reais.
 
 ```bash
 git switch prova/gitleaks
@@ -63,13 +65,23 @@ semgrep scan --config .semgrep/eval.yml --error --metrics=off .
 git switch main
 ```
 
-Para validar o Trivy no CI, publique `main` e abra o job `trivy` de uma execução. Confira a tabela de CVEs, o artefato JSON e a etapa final de bloqueio. CVEs `LOW`, `MEDIUM` ou `HIGH` são exibidos, mas não bloqueiam por esta política; `CRITICAL` bloqueia. Uma execução sem `CRITICAL` não prova ausência de todas as vulnerabilidades.
+Para validar o Trivy no CI, abra o [run aprovado da main](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681). Confira o build, a execução HTTP do contêiner, a tabela de CVEs, o artefato JSON e a etapa final de bloqueio. CVEs `LOW`, `MEDIUM` ou `HIGH` são exibidos, mas não bloqueiam por esta política; `CRITICAL` bloqueia. Uma execução sem `CRITICAL` não prova ausência de todas as vulnerabilidades.
 
 ## Evidências e relatório
 
-O estado da coleta está em [evidencias/README.md](evidencias/README.md). As capturas exigidas (`01-gitleaks.png`, `02-semgrep.png`, `03-trivy.png`) devem ser imagens autênticas do GitHub Actions. Os logs locais não substituem essas capturas.
+As capturas autênticas do GitHub Actions, os logs baixados dos jobs e o JSON do Trivy estão descritos em [evidencias/README.md](evidencias/README.md). As capturas são das páginas de resumo dos runs; os logs preservam os achados detalhados porque a página pública exige login para exibi-los.
 
-O relatório está em [CP05_DevSecOps_Relatorio.pdf](CP05_DevSecOps_Relatorio.pdf). Sem remoto GitHub configurado, o relatório registra os testes locais efetivamente realizados e deixa explícitas as pendências de execução remota, Docker e screenshots.
+O relatório completo está em [CP05_DevSecOps_Relatorio.pdf](CP05_DevSecOps_Relatorio.pdf). Repositório: [efsartorelli/CP05-DEVOPS](https://github.com/efsartorelli/CP05-DEVOPS).
+
+## Resultados reais do GitHub Actions
+
+| Branch e run | Gitleaks | Semgrep | Trivy |
+| --- | --- | --- | --- |
+| [`main` · 38462913681](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681) | Passou | Passou | Passou; build e HTTP 200; 1 CVE `MEDIUM`, 0 `CRITICAL` |
+| [`prova/gitleaks` · 38461907382](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382) | Falhou; 1 token fictício | Passou | Passou |
+| [`prova/semgrep` · 38461915387](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387) | Passou | Falhou; 1 uso de `eval` | Passou |
+
+O achado Trivy foi `CVE-2026-85091` no pacote zlib 1.3.2-r0, classificado como `MEDIUM`; a correção indicada no relatório é 1.3.2-r1. A política crítica não bloqueou o job.
 
 ## Referências técnicas
 
