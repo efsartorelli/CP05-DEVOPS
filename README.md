@@ -80,8 +80,11 @@ O relatório completo está em [CP05_DevSecOps_Relatorio.pdf](CP05_DevSecOps_Rel
 | [`main` · 38462913681](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681) | Passou | Passou | Passou; build e HTTP 200; 1 CVE `MEDIUM`, 0 `CRITICAL` |
 | [`prova/gitleaks` · 38461907382](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382) | Falhou; 1 token fictício | Passou | Passou |
 | [`prova/semgrep` · 38461915387](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387) | Passou | Falhou; 1 uso de `eval` | Passou |
+| [`pull_request` · 38464011096](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38464011096) | Passou | Falhou; 1 uso de `eval` | Passou |
 
 O achado Trivy foi `CVE-2026-85091` no pacote zlib 1.3.2-r0, classificado como `MEDIUM`; a correção indicada no relatório é 1.3.2-r1. A política crítica não bloqueou o job.
+
+O [PR de teste #1](https://github.com/efsartorelli/CP05-DEVOPS/pull/1) comprovou o gatilho `pull_request`. Ele foi fechado sem merge depois da execução. Após a publicação das evidências, a [main voltou a passar nos três jobs](https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38463925230).
 
 ## Referências técnicas
 

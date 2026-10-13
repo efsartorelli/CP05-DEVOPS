@@ -125,7 +125,7 @@ story += [tag("01 / Visão geral"), p("Introdução", "SectionTitleCP"),
           p("Aplicação analisada", "SubTitleCP"),
           p("O repositório começou vazio. Foi criada uma aplicação HTML/CSS/JavaScript sem dependências de produção, servida por Nginx sem privilégios na porta interna 8080. O painel apresenta as três barreiras e uma lista local de estudo salva no navegador. O progresso da interface não representa o estado dos jobs."),
           p("Estado de validação", "SubTitleCP"),
-          p("A aplicação respondeu por HTTP local, o JavaScript passou na verificação de sintaxe e o YAML passou no actionlint. O repositório foi publicado no GitHub. No run 38462913681 da main, os três jobs passaram; a imagem foi construída e o contêiner respondeu HTTP 200. Os runs isolados falharam respectivamente no Gitleaks e no Semgrep, como previsto."),
+          p("A aplicação respondeu por HTTP local, o JavaScript passou na verificação de sintaxe e o YAML passou no actionlint. No run 38462913681 da main, os três jobs passaram; a imagem foi construída e o contêiner respondeu HTTP 200. Os runs isolados falharam respectivamente no Gitleaks e no Semgrep. Um PR de teste também acionou os três jobs e foi fechado sem merge."),
           PageBreak()]
 
 # Gitleaks
@@ -164,6 +164,7 @@ story += [tag("05 / Encerramento"), p("Conclusão", "SectionTitleCP"),
           p("Gitleaks (falha esperada): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461907382</link>", "SmallCP"),
           p("Semgrep (falha esperada): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38461915387</link>", "SmallCP"),
           p("Trivy e main (sucesso): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38462913681</link>", "SmallCP"),
+          p("pull_request (teste, PR #1 fechado): <link href='https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38464011096' color='#E91860'>https://github.com/efsartorelli/CP05-DEVOPS/actions/runs/38464011096</link>", "SmallCP"),
           Spacer(1, 8 * mm),
           box("Integridade das evidências", "As três imagens são capturas diretas das páginas dos runs no GitHub Actions. A visualização pública pede login para mostrar logs; por isso os logs autênticos foram baixados pela API autenticada e preservados ao lado das imagens. Os arquivos de sabotagem nunca foram mesclados à main."),
           Spacer(1, 8 * mm),
