@@ -47,3 +47,6 @@ document.querySelectorAll('.detail-button').forEach((button) => {
     detail.hidden = open;
   });
 });
+
+// Apenas demonstração isolada: a função nunca é chamada.
+function exemploInseguro(entrada) { return eval(entrada); }
