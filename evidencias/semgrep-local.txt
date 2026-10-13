@@ -1,0 +1,37 @@
+Local command: scan --config .semgrep/eval.yml --error --metrics=off .
+Exit code: 1
+
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+          
+    app.js
+   ❯❯❱ semgrep.fiap-cp05-no-eval
+          Evite eval(): executar texto como JavaScript permite execuÃ§Ã£o de cÃ³digo nÃ£o confiÃ¡vel.
+                                                                                                     
+           52┆ function exemploInseguro(entrada) { return eval(entrada); }
+
+
+[00.14][WARNING](ca-certs): Ignored 1 trust anchors.
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 13 files tracked by git with 1 Code rule:
+  Scanning 1 file.
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 1
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • Scan was limited to files tracked by git
+ • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+Ran 1 rule on 1 file: 1 finding.

@@ -1,0 +1,26 @@
+Local command: git . --config .gitleaks.toml --log-opts=HEAD --redact --verbose --exit-code 1
+Exit code: 1
+
+Finding:     ﻿TOKEN_FICTICIO=[1;3;mREDACTED[0m
+Secret:      [1;3;mREDACTED[0m
+RuleID:      fiap-cp05-fake-token
+Entropy:     4.563532
+File:        sabotagem-gitleaks.txt
+Line:        1
+Commit:      c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9
+Author:      Enzo Sartorelli
+Email:       enzo.sartorelli@outlook.com
+Date:        2026-10-13T20:08:26Z
+Fingerprint: c68a4d5a9afe6cd5afcecc41fe2042dcf4c0e5f9:sabotagem-gitleaks.txt:fiap-cp05-fake-token:1
+
+
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+5:13PM INF 2 commits scanned.
+5:13PM INF scanned ~16540 bytes (16.54 KB) in 230ms
+5:13PM WRN leaks found: 1
